@@ -5,15 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zahnarztpraxis Nataja Tarasenko – Zahnärztin in Monschau-Imgenbroich</title>
   <meta name="description" content="Zahnarztpraxis Nataja Tarasenko in Monschau-Imgenbroich – moderne, einfühlsame Zahnmedizin für die ganze Familie. Termin vereinbaren: +49 2472 2544." />
-  <meta name="theme-color" content="#0e4f49" />
+  <meta name="theme-color" content="#0b3f3a" />
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Zahnarztpraxis Nataja Tarasenko – Zahnärztin in Monschau-Imgenbroich" />
   <meta property="og:description" content="Moderne, einfühlsame Zahnmedizin für die ganze Familie. Jetzt Termin vereinbaren." />
   <meta property="og:locale" content="de_DE" />
 
-  <!-- schema.org Dentist JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -35,28 +33,32 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
       --teal: #12776c;
       --teal-deep: #0e4f49;
-      --teal-900: #0a3a35;
+      --teal-900: #0b3f3a;
+      --teal-ink: #072b27;
       --teal-soft: #e4f2ef;
       --teal-tint: #f1f8f6;
-      --gold: #c9a35b;
+      --gold: #cfa862;
+      --gold-bright: #e4c585;
       --gold-soft: #f0e4cc;
-      --cream: #faf7f1;
-      --ink: #15231f;
-      --muted: #5a6b66;
+      --cream: #f7f4ed;
+      --cream2: #fbf9f4;
+      --ink: #142320;
+      --muted: #576a65;
       --line: rgba(14, 79, 73, 0.12);
       --white: #ffffff;
-      --radius: 26px;
-      --radius-sm: 16px;
-      --shadow-lg: 0 40px 80px -40px rgba(10, 58, 53, 0.45);
-      --shadow-md: 0 22px 50px -30px rgba(10, 58, 53, 0.4);
-      --shadow-sm: 0 12px 30px -20px rgba(10, 58, 53, 0.35);
-      --maxw: 1200px;
+      --radius: 28px;
+      --radius-sm: 18px;
+      --shadow-xl: 0 50px 100px -45px rgba(7, 43, 39, 0.55);
+      --shadow-lg: 0 40px 80px -40px rgba(7, 43, 39, 0.45);
+      --shadow-md: 0 24px 54px -32px rgba(7, 43, 39, 0.4);
+      --shadow-sm: 0 14px 34px -22px rgba(7, 43, 39, 0.35);
+      --maxw: 1240px;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
@@ -70,325 +72,305 @@
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      position: relative;
     }
 
     img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { font-family: "Fraunces", Georgia, "Times New Roman", serif; font-weight: 600; letter-spacing: -0.015em; }
 
-    h1, h2, h3 { font-family: "Fraunces", Georgia, "Times New Roman", serif; font-weight: 600; letter-spacing: -0.01em; }
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; position: relative; }
 
-    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
-
-    /* ---------- Shared bits ---------- */
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-family: "Inter", sans-serif;
-      font-size: .78rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--teal);
+    /* ---------- Grain + scroll progress + cursor glow ---------- */
+    .grain {
+      position: fixed; inset: 0; z-index: 2; pointer-events: none; opacity: 0.4; mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
     }
-    .eyebrow::before { content: ""; width: 30px; height: 1.5px; background: var(--gold); display: inline-block; }
+    .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 200; background: linear-gradient(90deg, var(--teal), var(--gold)); box-shadow: 0 0 14px rgba(207,168,98,0.6); }
+    .cursor-glow {
+      position: fixed; top: 0; left: 0; width: 520px; height: 520px; border-radius: 50%; z-index: 1; pointer-events: none;
+      transform: translate3d(-50%, -50%, 0); opacity: 0; transition: opacity .5s ease;
+      background: radial-gradient(circle, rgba(18,119,108,0.16), rgba(207,168,98,0.08) 40%, transparent 68%);
+    }
+
+    /* ---------- Shared ---------- */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-family: "Inter", sans-serif; font-size: .76rem; font-weight: 600;
+      letter-spacing: 0.24em; text-transform: uppercase; color: var(--teal);
+    }
+    .eyebrow::before { content: ""; width: 32px; height: 1.5px; background: var(--gold); }
     .eyebrow.center { justify-content: center; }
     .eyebrow.light { color: var(--gold-soft); }
     .eyebrow.light::before { background: var(--gold); }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 11px;
-      font-family: "Inter", sans-serif;
-      font-weight: 600;
-      font-size: .98rem;
-      letter-spacing: .01em;
-      padding: 15px 28px;
-      border-radius: 999px;
-      border: 1.5px solid transparent;
-      cursor: pointer;
-      transition: transform .3s var(--ease), background .3s var(--ease), color .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+      display: inline-flex; align-items: center; gap: 11px; position: relative;
+      font-family: "Inter", sans-serif; font-weight: 600; font-size: .98rem;
+      padding: 15px 28px; border-radius: 999px; border: 1.5px solid transparent; cursor: pointer;
+      transition: transform .35s var(--ease), background .3s var(--ease), color .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease);
+      will-change: transform;
     }
-    .btn svg { width: 18px; height: 18px; transition: transform .3s var(--ease); }
+    .btn svg { width: 18px; height: 18px; transition: transform .35s var(--ease); }
     .btn-primary { background: var(--teal); color: #fff; box-shadow: var(--shadow-md); }
     .btn-primary:hover { background: var(--teal-deep); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
     .btn-primary:hover svg { transform: rotate(-12deg) scale(1.08); }
-    .btn-gold { background: var(--gold); color: #3a2d10; box-shadow: 0 18px 40px -22px rgba(201, 163, 91, 0.9); }
-    .btn-gold:hover { background: #d8b572; transform: translateY(-3px); }
-    .btn-outline { background: transparent; color: var(--teal-deep); border-color: rgba(14, 79, 73, 0.3); }
-    .btn-outline:hover { border-color: var(--teal); background: var(--teal-tint); transform: translateY(-3px); }
+    .btn-gold { background: linear-gradient(135deg, var(--gold-bright), var(--gold)); color: #3a2d10; box-shadow: 0 20px 44px -22px rgba(207,168,98,0.95); }
+    .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 28px 56px -22px rgba(207,168,98,1); }
+    .btn-outline { background: transparent; color: var(--teal-deep); border-color: rgba(14,79,73,0.28); }
+    .btn-outline:hover { border-color: var(--teal); background: rgba(255,255,255,0.5); transform: translateY(-3px); }
     .btn-ghost-light { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.35); }
     .btn-ghost-light:hover { background: rgba(255,255,255,0.18); transform: translateY(-3px); }
     .btn-lg { padding: 17px 34px; font-size: 1.02rem; }
 
-    /* Media with graceful fallback */
-    .media {
-      position: relative;
-      border-radius: var(--radius);
-      overflow: hidden;
-      background: var(--teal-soft);
-    }
+    /* Media fallback */
+    .media { position: relative; border-radius: var(--radius); overflow: hidden; background: var(--teal-soft); }
     .media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2; }
     .media-fallback {
-      position: absolute; inset: 0; z-index: 1;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
-      text-align: center; padding: 28px;
-      background: linear-gradient(150deg, var(--teal) 0%, var(--teal-deep) 100%);
-      color: #fff;
+      position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 16px; text-align: center; padding: 26px;
+      background: linear-gradient(150deg, var(--teal) 0%, var(--teal-deep) 100%); color: #fff;
     }
     .media-fallback.alt { background: linear-gradient(150deg, #3f9a8e 0%, var(--teal) 100%); }
-    .media-fallback svg { width: 58px; height: 58px; opacity: .9; }
-    .media-fallback b { font-family: "Fraunces", serif; font-size: 1.15rem; font-weight: 500; }
+    .media-fallback svg { width: 56px; height: 56px; opacity: .9; }
+    .media-fallback b { font-family: "Fraunces", serif; font-size: 1.12rem; font-weight: 500; }
 
     /* ---------- Header ---------- */
     header {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      transition: background .4s var(--ease), box-shadow .4s var(--ease), padding .4s var(--ease), border-color .4s var(--ease);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 150; padding: 12px 0;
+      transition: background .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease), padding .4s var(--ease);
       border-bottom: 1px solid transparent;
-      padding: 10px 0;
     }
     header.scrolled {
-      background: rgba(250, 247, 241, 0.86);
-      backdrop-filter: saturate(180%) blur(14px);
-      -webkit-backdrop-filter: saturate(180%) blur(14px);
-      box-shadow: 0 10px 30px -24px rgba(10, 58, 53, 0.6);
-      border-bottom-color: var(--line);
+      background: rgba(247, 244, 237, 0.82); backdrop-filter: saturate(180%) blur(16px); -webkit-backdrop-filter: saturate(180%) blur(16px);
+      box-shadow: 0 12px 34px -26px rgba(7,43,39,0.6); border-bottom-color: var(--line); padding: 8px 0;
     }
     .nav { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
     .brand { display: flex; align-items: center; gap: 13px; min-width: 0; }
     .brand-mark {
-      width: 48px; height: 48px; border-radius: 15px; flex-shrink: 0;
-      background: linear-gradient(140deg, var(--teal), var(--teal-deep));
-      display: grid; place-items: center; color: #fff;
-      box-shadow: var(--shadow-sm);
-      position: relative;
+      width: 50px; height: 50px; border-radius: 16px; flex-shrink: 0; position: relative;
+      background: linear-gradient(140deg, var(--teal), var(--teal-900)); display: grid; place-items: center; color: #fff; box-shadow: var(--shadow-sm);
     }
-    .brand-mark::after {
-      content: ""; position: absolute; inset: 0; border-radius: 15px;
-      border: 1px solid rgba(201, 163, 91, 0.5);
-    }
-    .brand-mark svg { width: 26px; height: 26px; }
-    .brand-text { line-height: 1.25; min-width: 0; }
-    .brand-text strong { display: block; font-family: "Fraunces", serif; font-size: 1.12rem; font-weight: 600; letter-spacing: -0.01em; }
-    .brand-text span { font-size: .74rem; color: var(--muted); letter-spacing: .14em; text-transform: uppercase; }
-
+    .brand-mark::after { content: ""; position: absolute; inset: 0; border-radius: 16px; border: 1px solid rgba(207,168,98,0.55); }
+    .brand-mark svg { width: 27px; height: 27px; }
+    .brand-text strong { display: block; font-family: "Fraunces", serif; font-size: 1.14rem; font-weight: 600; letter-spacing: -0.01em; }
+    .brand-text span { font-size: .72rem; color: var(--muted); letter-spacing: .14em; text-transform: uppercase; }
     nav.links { display: none; gap: 34px; align-items: center; }
-    nav.links a { font-size: .95rem; font-weight: 500; color: var(--ink); position: relative; padding: 4px 0; transition: color .25s; }
+    nav.links a { font-size: .95rem; font-weight: 500; color: var(--ink); position: relative; padding: 4px 0; }
     nav.links a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 0; height: 1.5px; background: var(--gold); transition: width .3s var(--ease); }
-    nav.links a:hover { color: var(--teal-deep); }
     nav.links a:hover::after { width: 100%; }
-
     .header-cta { display: none; }
 
     /* ---------- Hero ---------- */
-    .hero { position: relative; padding: 148px 0 90px; overflow: hidden; }
-    .hero::before {
-      content: ""; position: absolute; top: -200px; right: -160px; width: 620px; height: 620px;
-      background: radial-gradient(circle, rgba(18,119,108,0.14), transparent 68%);
-      z-index: 0;
-    }
-    .hero::after {
-      content: ""; position: absolute; bottom: -180px; left: -140px; width: 480px; height: 480px;
-      background: radial-gradient(circle, rgba(201,163,91,0.14), transparent 68%);
-      z-index: 0;
-    }
-    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr; gap: 50px; align-items: center; }
-    .hero h1 {
-      font-size: clamp(2.5rem, 6.2vw, 4.1rem);
-      line-height: 1.04;
-      margin: 22px 0 24px;
-    }
-    .hero h1 em { font-style: italic; color: var(--teal-deep); }
-    .hero p.lead { font-size: 1.16rem; color: var(--muted); max-width: 46ch; margin-bottom: 34px; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 40px; }
-    .hero-stats { display: flex; flex-wrap: wrap; gap: 32px 44px; }
-    .hero-stat .num { font-family: "Fraunces", serif; font-size: 1.9rem; font-weight: 600; color: var(--teal-deep); line-height: 1; }
-    .hero-stat .lbl { font-size: .86rem; color: var(--muted); margin-top: 6px; }
-    .hero-stat .num .g { color: var(--gold); }
+    .hero { position: relative; padding: 160px 0 90px; overflow: hidden; isolation: isolate; }
+    .aurora { position: absolute; inset: -20% -10% -10% -10%; z-index: -2; filter: blur(60px); opacity: 0.9; }
+    .aurora span { position: absolute; display: block; border-radius: 50%; }
+    .aurora .a1 { width: 46vw; height: 46vw; left: -6vw; top: -8vw; background: radial-gradient(circle, rgba(18,119,108,0.42), transparent 62%); animation: drift1 18s var(--ease) infinite alternate; }
+    .aurora .a2 { width: 40vw; height: 40vw; right: -4vw; top: 4vw; background: radial-gradient(circle, rgba(207,168,98,0.4), transparent 62%); animation: drift2 22s var(--ease) infinite alternate; }
+    .aurora .a3 { width: 38vw; height: 38vw; left: 28vw; bottom: -14vw; background: radial-gradient(circle, rgba(63,154,142,0.34), transparent 62%); animation: drift3 20s var(--ease) infinite alternate; }
+    @keyframes drift1 { to { transform: translate3d(8vw, 6vw, 0) scale(1.15); } }
+    @keyframes drift2 { to { transform: translate3d(-7vw, 8vw, 0) scale(1.1); } }
+    @keyframes drift3 { to { transform: translate3d(5vw, -7vw, 0) scale(1.2); } }
 
-    .hero-media { position: relative; }
-    .hero-media .media { aspect-ratio: 4 / 5; box-shadow: var(--shadow-lg); }
-    .hero-media::before {
-      content: ""; position: absolute; inset: 22px -22px -22px 22px; border: 1.5px solid var(--gold);
-      border-radius: var(--radius); z-index: -1; opacity: .55;
-    }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr; gap: 54px; align-items: center; }
+    .hero h1 { font-size: clamp(2.7rem, 7vw, 4.6rem); line-height: 1.02; margin: 24px 0 24px; }
+    .hero h1 em { font-style: italic; color: var(--teal-deep); position: relative; }
+    .hero h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0.08em; height: 0.12em; background: linear-gradient(90deg, var(--gold), transparent); opacity: .7; border-radius: 2px; }
+    .hero p.lead { font-size: 1.18rem; color: var(--muted); max-width: 46ch; margin-bottom: 34px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 42px; }
+    .hero-stats { display: flex; flex-wrap: wrap; gap: 26px 44px; }
+    .hero-stat .num { font-family: "Fraunces", serif; font-size: 2rem; font-weight: 600; color: var(--teal-deep); line-height: 1; }
+    .hero-stat .num .g { color: var(--gold); }
+    .hero-stat .lbl { font-size: .85rem; color: var(--muted); margin-top: 7px; max-width: 16ch; }
+
+    .hero-visual { position: relative; perspective: 1400px; }
+    .hero-card3d { position: relative; transform-style: preserve-3d; transition: transform .2s var(--ease); will-change: transform; }
+    .hero-visual .media { aspect-ratio: 4 / 5; box-shadow: var(--shadow-xl); transform: translateZ(0); }
+    .hero-visual::before { content: ""; position: absolute; inset: 26px -26px -26px 26px; border: 1.5px solid var(--gold); border-radius: var(--radius); z-index: -1; opacity: .5; }
     .float-card {
-      position: absolute; background: rgba(255,255,255,0.92); backdrop-filter: blur(10px);
-      border: 1px solid var(--line); border-radius: var(--radius-sm); box-shadow: var(--shadow-md);
-      padding: 16px 20px; display: flex; align-items: center; gap: 14px; z-index: 3;
+      position: absolute; background: rgba(255,255,255,0.78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.6); border-radius: var(--radius-sm); box-shadow: var(--shadow-md);
+      padding: 15px 19px; display: flex; align-items: center; gap: 13px; z-index: 5; transform: translateZ(60px);
     }
     .float-card .fi { width: 44px; height: 44px; border-radius: 12px; background: var(--teal-soft); color: var(--teal-deep); display: grid; place-items: center; flex-shrink: 0; }
     .float-card .fi svg { width: 22px; height: 22px; }
-    .float-card b { display: block; font-size: .95rem; font-weight: 600; }
-    .float-card small { color: var(--muted); font-size: .8rem; }
-    .float-card.one { left: -16px; bottom: 54px; }
-    .float-card.two { right: -14px; top: 40px; }
+    .float-card b { display: block; font-size: .94rem; font-weight: 600; }
+    .float-card small { color: var(--muted); font-size: .79rem; }
+    .float-card.one { left: -18px; bottom: 60px; }
+    .float-card.two { right: -16px; top: 46px; }
 
-    /* ---------- Trust strip ---------- */
-    .trust { position: relative; z-index: 2; margin-top: 10px; }
-    .trust-inner {
-      background: var(--teal-deep); color: #eaf4f1; border-radius: var(--radius);
-      padding: 34px 20px; display: grid; grid-template-columns: 1fr; gap: 26px;
-      box-shadow: var(--shadow-lg); position: relative; overflow: hidden;
-    }
-    .trust-inner::after {
-      content: ""; position: absolute; top: -80px; right: -60px; width: 260px; height: 260px;
-      background: radial-gradient(circle, rgba(201,163,91,0.22), transparent 70%);
-    }
-    .trust-item { display: flex; gap: 15px; align-items: flex-start; position: relative; z-index: 1; padding: 0 14px; }
-    .trust-item .ti { width: 46px; height: 46px; border-radius: 13px; background: rgba(255,255,255,0.1); color: var(--gold); display: grid; place-items: center; flex-shrink: 0; }
-    .trust-item .ti svg { width: 23px; height: 23px; }
-    .trust-item b { display: block; font-family: "Fraunces", serif; font-size: 1.08rem; font-weight: 500; color: #fff; margin-bottom: 3px; }
-    .trust-item span { font-size: .88rem; color: #bcd4ce; }
+    .scroll-cue { display: inline-flex; align-items: center; gap: 10px; margin-top: 46px; font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+    .scroll-cue .mouse { width: 22px; height: 34px; border: 1.5px solid var(--muted); border-radius: 12px; position: relative; }
+    .scroll-cue .mouse::after { content: ""; position: absolute; left: 50%; top: 6px; width: 3px; height: 6px; background: var(--teal); border-radius: 2px; transform: translateX(-50%); animation: wheel 1.6s ease infinite; }
+    @keyframes wheel { 0% { opacity: 1; top: 6px; } 60% { opacity: 0; top: 16px; } 100% { opacity: 0; } }
+
+    /* ---------- Marquee ---------- */
+    .marquee { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--cream2); overflow: hidden; padding: 20px 0; }
+    .marquee-track { display: flex; gap: 0; white-space: nowrap; width: max-content; animation: scrollx 32s linear infinite; }
+    .marquee-track span { font-family: "Fraunces", serif; font-size: 1.5rem; font-style: italic; color: var(--teal-deep); padding: 0 30px; display: inline-flex; align-items: center; gap: 30px; }
+    .marquee-track span::after { content: "✦"; color: var(--gold); font-size: 1rem; font-style: normal; }
+    @keyframes scrollx { to { transform: translateX(-50%); } }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
 
     /* ---------- Sections ---------- */
-    section.block { padding: 96px 0; position: relative; }
-    .section-head { max-width: 680px; margin: 0 auto 58px; text-align: center; }
-    .section-head h2 { font-size: clamp(1.9rem, 4.6vw, 2.9rem); line-height: 1.12; margin: 18px 0 16px; }
+    section.block { padding: 104px 0; position: relative; }
+    .section-head { max-width: 700px; margin: 0 auto 60px; text-align: center; }
+    .section-head h2 { font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.1; margin: 18px 0 16px; }
     .section-head p { color: var(--muted); font-size: 1.08rem; }
-    .idx { font-family: "Fraunces", serif; font-style: italic; color: var(--gold); font-size: 1rem; }
+    .idx { font-family: "Fraunces", serif; font-style: italic; color: var(--gold); }
 
-    /* ---------- Leistungen ---------- */
-    .cards { display: grid; grid-template-columns: 1fr; gap: 22px; }
-    .card {
-      background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
-      padding: 34px 30px; position: relative; overflow: hidden;
-      transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
+    /* ---------- Leistungen (Bento, photo cards, 3D tilt) ---------- */
+    .bento { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    .svc {
+      position: relative; border-radius: var(--radius); overflow: hidden; min-height: 300px;
+      background: var(--teal-deep); box-shadow: var(--shadow-md); transform-style: preserve-3d; will-change: transform;
+      transition: box-shadow .4s var(--ease), transform .2s var(--ease);
     }
-    .card::before {
-      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--teal), var(--gold)); transform: scaleX(0); transform-origin: left;
-      transition: transform .45s var(--ease);
-    }
-    .card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: transparent; }
-    .card:hover::before { transform: scaleX(1); }
-    .card .ico {
-      width: 58px; height: 58px; border-radius: 16px; background: var(--teal-tint); color: var(--teal-deep);
-      display: grid; place-items: center; margin-bottom: 22px; transition: background .4s var(--ease), color .4s var(--ease);
-    }
-    .card:hover .ico { background: var(--teal); color: #fff; }
-    .card .ico svg { width: 28px; height: 28px; }
-    .card .num-tag { position: absolute; top: 26px; right: 30px; font-family: "Fraunces", serif; font-style: italic; font-size: 1.1rem; color: var(--line); }
-    .card:hover .num-tag { color: var(--gold); }
-    .card h3 { font-size: 1.32rem; margin-bottom: 10px; }
-    .card p { color: var(--muted); font-size: .98rem; }
+    .svc:hover { box-shadow: var(--shadow-xl); }
+    .svc .svc-media, .svc .svc-media img { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .svc .svc-media img { object-fit: cover; z-index: 1; transition: transform 1s var(--ease); }
+    .svc:hover .svc-media img { transform: scale(1.08); }
+    .svc .svc-fallback { position: absolute; inset: 0; z-index: 0; display: grid; place-items: center; }
+    .svc .svc-fallback svg { width: 72px; height: 72px; color: rgba(255,255,255,0.35); }
+    .svc .scrim { position: absolute; inset: 0; z-index: 2; background: linear-gradient(180deg, rgba(7,43,39,0.05) 0%, rgba(7,43,39,0.35) 45%, rgba(7,43,39,0.92) 100%); }
+    .svc .svc-body { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; color: #fff; transform: translateZ(40px); }
+    .svc .svc-num { position: absolute; top: 24px; left: 30px; font-family: "Fraunces", serif; font-style: italic; font-size: 1.1rem; color: var(--gold-bright); z-index: 3; transform: translateZ(40px); }
+    .svc .svc-ico { position: absolute; top: 22px; right: 26px; width: 48px; height: 48px; border-radius: 13px; background: rgba(255,255,255,0.14); backdrop-filter: blur(6px); display: grid; place-items: center; z-index: 3; transform: translateZ(40px); }
+    .svc .svc-ico svg { width: 24px; height: 24px; color: #fff; }
+    .svc h3 { font-size: 1.5rem; margin-bottom: 8px; color: #fff; }
+    .svc p { font-size: .96rem; color: rgba(255,255,255,0.85); max-width: 42ch; }
+    .svc .more { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-size: .86rem; font-weight: 600; letter-spacing: .02em; color: var(--gold-bright); opacity: 0; transform: translateY(8px); transition: opacity .4s var(--ease), transform .4s var(--ease); }
+    .svc:hover .more { opacity: 1; transform: none; }
 
     /* ---------- Über die Praxis ---------- */
     .about { background: linear-gradient(180deg, var(--teal-tint), var(--cream)); }
-    .about-grid { display: grid; grid-template-columns: 1fr; gap: 52px; align-items: center; }
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 56px; align-items: center; }
     .about-media { position: relative; }
-    .about-media .media { aspect-ratio: 5 / 6; box-shadow: var(--shadow-lg); }
-    .about-media .badge {
-      position: absolute; right: -10px; bottom: -22px; background: #fff; border-radius: var(--radius-sm);
-      padding: 18px 22px; box-shadow: var(--shadow-md); border: 1px solid var(--line); z-index: 3; text-align: center;
-    }
-    .about-media .badge .bn { font-family: "Fraunces", serif; font-size: 1.9rem; color: var(--teal-deep); font-weight: 600; line-height: 1; }
-    .about-media .badge .bl { font-size: .78rem; color: var(--muted); margin-top: 5px; letter-spacing: .04em; }
-    .about-text h2 { font-size: clamp(1.9rem, 4.6vw, 2.9rem); line-height: 1.12; margin: 18px 0 20px; }
+    .about-media .pfrm { position: relative; perspective: 1200px; }
+    .about-media .media { aspect-ratio: 5 / 6; box-shadow: var(--shadow-xl); }
+    .about-media .badge { position: absolute; right: -12px; bottom: -24px; background: #fff; border-radius: var(--radius-sm); padding: 18px 24px; box-shadow: var(--shadow-md); border: 1px solid var(--line); z-index: 4; text-align: center; }
+    .about-media .badge .bn { font-family: "Fraunces", serif; font-size: 2rem; color: var(--gold); font-weight: 600; line-height: 1; }
+    .about-media .badge .bl { font-size: .76rem; color: var(--muted); margin-top: 5px; letter-spacing: .05em; }
+    .about-text h2 { font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.1; margin: 18px 0 20px; }
     .about-text p { color: var(--muted); margin-bottom: 18px; font-size: 1.05rem; }
     .about-list { list-style: none; display: grid; gap: 15px; margin: 26px 0 32px; }
-    .about-list li { display: flex; align-items: flex-start; gap: 13px; font-weight: 500; color: var(--ink); }
-    .about-list .ck { width: 26px; height: 26px; border-radius: 50%; background: var(--teal-soft); color: var(--teal-deep); display: grid; place-items: center; flex-shrink: 0; margin-top: 2px; }
+    .about-list li { display: flex; align-items: flex-start; gap: 13px; font-weight: 500; }
+    .about-list .ck { width: 27px; height: 27px; border-radius: 50%; background: var(--teal-soft); color: var(--teal-deep); display: grid; place-items: center; flex-shrink: 0; margin-top: 2px; }
     .about-list .ck svg { width: 15px; height: 15px; }
-    .signature { font-family: "Fraunces", serif; font-style: italic; font-size: 1.5rem; color: var(--teal-deep); }
-    .signature small { display: block; font-family: "Inter", sans-serif; font-style: normal; font-size: .82rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+    .signature { font-family: "Fraunces", serif; font-style: italic; font-size: 1.55rem; color: var(--teal-deep); }
+    .signature small { display: block; font-family: "Inter", sans-serif; font-style: normal; font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
 
-    /* ---------- Ablauf ---------- */
-    .steps { display: grid; grid-template-columns: 1fr; gap: 24px; }
-    .step { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 34px 30px; position: relative; }
-    .step .sn { font-family: "Fraunces", serif; font-size: 2.4rem; color: var(--gold); line-height: 1; margin-bottom: 14px; }
-    .step h3 { font-size: 1.25rem; margin-bottom: 8px; }
-    .step p { color: var(--muted); font-size: .97rem; }
+    /* ---------- Ablauf timeline ---------- */
+    .timeline { display: grid; grid-template-columns: 1fr; gap: 20px; position: relative; }
+    .tstep { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 36px 32px; position: relative; overflow: hidden; }
+    .tstep::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--teal), var(--gold)); transform: scaleX(0); transform-origin: left; transition: transform .5s var(--ease); }
+    .tstep.in::before { transform: scaleX(1); }
+    .tstep .sn { font-family: "Fraunces", serif; font-size: 2.6rem; color: var(--gold); line-height: 1; margin-bottom: 14px; }
+    .tstep h3 { font-size: 1.3rem; margin-bottom: 8px; }
+    .tstep p { color: var(--muted); font-size: .97rem; }
 
     /* ---------- Kontakt ---------- */
     .contact { background: var(--teal-tint); }
     .contact-grid { display: grid; grid-template-columns: 1fr; gap: 30px; align-items: stretch; }
-    .info-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 38px 34px; box-shadow: var(--shadow-sm); }
-    .info-card > h3 { font-size: 1.5rem; margin-bottom: 8px; }
+    .info-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 40px 36px; box-shadow: var(--shadow-sm); }
+    .info-card > h3 { font-size: 1.6rem; margin-bottom: 8px; }
     .info-card > p.sub { color: var(--muted); margin-bottom: 26px; }
     .info-row { display: flex; gap: 17px; padding: 20px 0; border-bottom: 1px solid var(--line); }
     .info-row:last-of-type { border-bottom: none; }
-    .info-row .ico { width: 50px; height: 50px; border-radius: 14px; background: var(--teal-tint); color: var(--teal-deep); display: grid; place-items: center; flex-shrink: 0; }
+    .info-row .ico { width: 52px; height: 52px; border-radius: 15px; background: var(--teal-tint); color: var(--teal-deep); display: grid; place-items: center; flex-shrink: 0; }
     .info-row .ico svg { width: 23px; height: 23px; }
     .info-row .meta b { display: block; font-size: 1.02rem; margin-bottom: 3px; }
     .info-row .meta span, .info-row .meta a { color: var(--muted); font-size: .98rem; }
-    .info-row .meta a.phone { color: var(--teal-deep); font-weight: 700; font-size: 1.22rem; font-family: "Fraunces", serif; }
-    .info-row .meta a.phone:hover { color: var(--teal); }
+    .info-row .meta a.phone { color: var(--teal-deep); font-weight: 700; font-size: 1.28rem; font-family: "Fraunces", serif; }
     .hours-note { display: inline-block; margin-top: 7px; font-size: .82rem; color: var(--teal-deep); background: var(--teal-soft); padding: 4px 12px; border-radius: 9px; font-weight: 500; }
     .contact-cta { margin-top: 30px; }
     .contact-cta .btn { width: 100%; justify-content: center; }
-
-    .map-card { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow-md); background: #fff; min-height: 380px; position: relative; }
-    .map-card iframe { width: 100%; height: 100%; min-height: 440px; border: 0; display: block; }
+    .map-card { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow-md); background: #fff; min-height: 400px; }
+    .map-card iframe { width: 100%; height: 100%; min-height: 460px; border: 0; display: block; }
 
     /* ---------- CTA band ---------- */
-    .cta-band { position: relative; overflow: hidden; background: linear-gradient(135deg, var(--teal-deep), var(--teal-900)); color: #fff; }
-    .cta-band::before { content: ""; position: absolute; top: -120px; right: -80px; width: 360px; height: 360px; background: radial-gradient(circle, rgba(201,163,91,0.2), transparent 70%); }
-    .cta-band::after { content: ""; position: absolute; bottom: -140px; left: -70px; width: 320px; height: 320px; background: radial-gradient(circle, rgba(255,255,255,0.07), transparent 70%); }
-    .cta-inner { position: relative; z-index: 1; text-align: center; padding: 84px 0; }
-    .cta-inner h2 { font-size: clamp(1.9rem, 4.6vw, 3rem); color: #fff; line-height: 1.12; margin: 16px auto 18px; max-width: 18ch; }
-    .cta-inner p { color: #bcd4ce; font-size: 1.1rem; max-width: 50ch; margin: 0 auto 32px; }
+    .cta-band { position: relative; overflow: hidden; background: linear-gradient(135deg, var(--teal-900), var(--teal-ink)); color: #fff; isolation: isolate; }
+    .cta-band .aurora { filter: blur(70px); opacity: .55; }
+    .cta-band .aurora .a1 { background: radial-gradient(circle, rgba(18,119,108,0.9), transparent 60%); }
+    .cta-band .aurora .a2 { background: radial-gradient(circle, rgba(207,168,98,0.7), transparent 60%); }
+    .cta-inner { position: relative; z-index: 1; text-align: center; padding: 96px 0; }
+    .cta-inner h2 { font-size: clamp(2rem, 5vw, 3.3rem); color: #fff; line-height: 1.1; margin: 16px auto 18px; max-width: 18ch; }
+    .cta-inner p { color: #bcd4ce; font-size: 1.12rem; max-width: 50ch; margin: 0 auto 32px; }
     .cta-inner .btn-row { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
 
     /* ---------- Footer ---------- */
-    footer { background: var(--teal-900); color: #a9c2bc; padding: 68px 0 30px; }
+    footer { background: var(--teal-ink); color: #a3c0ba; padding: 72px 0 30px; position: relative; z-index: 3; }
     .footer-grid { display: grid; grid-template-columns: 1fr; gap: 36px; }
-    .footer-brand .brand-mark { box-shadow: none; }
     .footer-brand .fb-top { display: flex; align-items: center; gap: 13px; margin-bottom: 18px; }
-    .footer-brand strong { color: #fff; font-family: "Fraunces", serif; font-size: 1.18rem; }
-    .footer-brand .fb-top span { color: #7fa39c; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; display: block; }
+    .footer-brand .brand-mark { box-shadow: none; }
+    .footer-brand strong { color: #fff; font-family: "Fraunces", serif; font-size: 1.2rem; }
+    .footer-brand .fb-top span { color: #7aa49c; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; }
     .footer-brand p { font-size: .94rem; max-width: 34ch; line-height: 1.75; }
-    .footer-col h4 { color: #fff; font-family: "Inter", sans-serif; font-size: .82rem; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 18px; font-weight: 600; }
+    .footer-col h4 { color: #fff; font-family: "Inter", sans-serif; font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 18px; font-weight: 600; }
     .footer-col ul { list-style: none; display: grid; gap: 11px; }
-    .footer-col a, .footer-col li { color: #a9c2bc; font-size: .95rem; transition: color .25s; }
-    .footer-col a:hover { color: var(--gold); }
-    .footer-bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; font-size: .84rem; color: #7fa39c; }
+    .footer-col a, .footer-col li { color: #a3c0ba; font-size: .95rem; transition: color .25s; }
+    .footer-col a:hover { color: var(--gold-bright); }
+    .footer-bottom { margin-top: 50px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; font-size: .84rem; color: #7aa49c; }
 
     /* ---------- Sticky mobile call ---------- */
-    .sticky-call { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 90; display: flex; justify-content: center; }
-    .sticky-call a { width: 100%; max-width: 540px; justify-content: center; box-shadow: 0 16px 40px -10px rgba(10, 58, 53, 0.7); }
+    .sticky-call { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 120; display: flex; justify-content: center; }
+    .sticky-call a { width: 100%; max-width: 540px; justify-content: center; box-shadow: 0 18px 44px -10px rgba(7,43,39,0.75); }
 
-    /* ---------- Reveal animation ---------- */
-    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+    /* ---------- Reveal ---------- */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
     .reveal.in { opacity: 1; transform: none; }
+    .reveal[data-delay="1"] { transition-delay: .08s; }
+    .reveal[data-delay="2"] { transition-delay: .16s; }
+    .reveal[data-delay="3"] { transition-delay: .24s; }
+    .reveal[data-delay="4"] { transition-delay: .32s; }
+    .reveal[data-delay="5"] { transition-delay: .40s; }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .reveal { opacity: 1; transform: none; transition: none; }
-      * { animation: none !important; }
+      .aurora span, .marquee-track, .scroll-cue .mouse::after { animation: none !important; }
+      .cursor-glow { display: none; }
     }
 
     /* ---------- Responsive ---------- */
     @media (min-width: 640px) {
-      .cards { grid-template-columns: repeat(2, 1fr); }
-      .steps { grid-template-columns: repeat(3, 1fr); }
-      .trust-inner { grid-template-columns: repeat(2, 1fr); }
+      .timeline { grid-template-columns: repeat(3, 1fr); }
     }
-    @media (min-width: 900px) {
+    @media (min-width: 760px) {
+      .bento { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 290px; }
+      .svc.s1 { grid-column: span 3; grid-row: span 1; }
+      .svc.s2 { grid-column: span 3; }
+      .svc.s3 { grid-column: span 2; }
+      .svc.s4 { grid-column: span 2; }
+      .svc.s5 { grid-column: span 2; }
+      .svc.s6 { grid-column: span 6; min-height: 320px; }
+    }
+    @media (min-width: 980px) {
       nav.links { display: flex; }
       .header-cta { display: inline-flex; }
-      .hero { padding: 180px 0 110px; }
-      .hero-grid { grid-template-columns: 1.08fr 0.92fr; gap: 64px; }
-      .trust-inner { grid-template-columns: repeat(4, 1fr); padding: 40px 24px; }
-      .cards { grid-template-columns: repeat(3, 1fr); }
-      .about-grid { grid-template-columns: 0.9fr 1.1fr; }
+      .hero { padding: 200px 0 120px; }
+      .hero-grid { grid-template-columns: 1.1fr 0.9fr; gap: 70px; }
+      .about-grid { grid-template-columns: 0.88fr 1.12fr; }
       .contact-grid { grid-template-columns: 1fr 1.05fr; }
       .footer-grid { grid-template-columns: 1.6fr 1fr 1fr; gap: 50px; }
       .sticky-call { display: none; }
       body { padding-bottom: 0 !important; }
     }
-    @media (max-width: 899px) {
-      body { padding-bottom: 90px; }
+    @media (max-width: 979px) {
+      body { padding-bottom: 92px; }
       .float-card.two { display: none; }
-      .hero-media::before { inset: 16px -12px -16px 12px; }
+      .hero-visual::before { inset: 18px -14px -18px 14px; }
     }
-    @media (max-width: 400px) {
-      .float-card.one { left: 8px; bottom: 14px; }
+    @media (max-width: 420px) {
+      .float-card.one { left: 8px; bottom: 16px; }
     }
   </style>
 </head>
 <body>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="cursor-glow" id="glow" aria-hidden="true"></div>
 
   <!-- ===== Header ===== -->
   <header id="siteHeader">
@@ -402,14 +384,12 @@
           <span>Zahnärztin · Monschau</span>
         </span>
       </a>
-
       <nav class="links" aria-label="Hauptnavigation">
         <a href="#leistungen">Leistungen</a>
         <a href="#praxis">Praxis</a>
         <a href="#ablauf">Ablauf</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
-
       <a class="btn btn-primary header-cta" href="tel:+4924722544">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         Termin vereinbaren
@@ -421,77 +401,56 @@
 
   <!-- ===== Hero ===== -->
   <section class="hero" aria-labelledby="hero-title">
+    <div class="aurora" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
     <div class="wrap hero-grid">
-      <div class="hero-copy reveal">
-        <span class="eyebrow">Ihre Zahnarztpraxis in Monschau</span>
-        <h1 id="hero-title">Zahnmedizin mit <em>Ruhe, Zeit</em> und echtem Zuhören.</h1>
-        <p class="lead">Herzlich willkommen in der Praxis von Zahnärztin Nataja Tarasenko. Wir verbinden moderne Zahnheilkunde mit einer persönlichen, einfühlsamen Betreuung – für ein gutes Gefühl bei jedem Besuch.</p>
-        <div class="hero-actions">
+      <div class="hero-copy">
+        <span class="eyebrow reveal">Ihre Zahnarztpraxis in Monschau</span>
+        <h1 id="hero-title" class="reveal" data-delay="1">Zahnmedizin mit <em>Ruhe, Zeit</em> und echtem Zuhören.</h1>
+        <p class="lead reveal" data-delay="2">Herzlich willkommen in der Praxis von Zahnärztin Nataja Tarasenko. Wir verbinden moderne Zahnheilkunde mit einer persönlichen, einfühlsamen Betreuung – für ein gutes Gefühl bei jedem Besuch.</p>
+        <div class="hero-actions reveal" data-delay="3">
           <a class="btn btn-primary btn-lg" href="tel:+4924722544">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             Termin vereinbaren
           </a>
           <a class="btn btn-outline btn-lg" href="#leistungen">Leistungen entdecken</a>
         </div>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <div class="num">100<span class="g">%</span></div>
-            <div class="lbl">Zeit für Sie als Mensch</div>
-          </div>
-          <div class="hero-stat">
-            <div class="num">Alle<span class="g">.</span></div>
-            <div class="lbl">Für die ganze Familie</div>
-          </div>
-          <div class="hero-stat">
-            <div class="num">Monschau<span class="g">.</span></div>
-            <div class="lbl">Zentral in Imgenbroich</div>
-          </div>
+        <div class="hero-stats reveal" data-delay="4">
+          <div class="hero-stat"><div class="num" data-count="100" data-suffix="%">0<span class="g">%</span></div><div class="lbl">Zeit für Sie als Mensch</div></div>
+          <div class="hero-stat"><div class="num">Alle<span class="g">.</span></div><div class="lbl">Zahnmedizin für die ganze Familie</div></div>
+          <div class="hero-stat"><div class="num">Monschau<span class="g">.</span></div><div class="lbl">Zentral in Imgenbroich</div></div>
         </div>
+        <div class="scroll-cue reveal" data-delay="5"><span class="mouse" aria-hidden="true"></span> Scrollen</div>
       </div>
 
-      <div class="hero-media reveal">
-        <div class="media">
-          <div class="media-fallback" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5c-1.5-1.5-4-2-5.5-1C4 5.5 4 8 4.5 11c.4 2.4 1 5.5 2 7 .8 1.2 2 .5 2.3-1 .3-1.3.5-3 1.2-3s.9 1.7 1.2 3c.3 1.5 1.5 2.2 2.3 1 1-1.5 1.6-4.6 2-7 .5-3 .5-5.5-2-6.5-1.5-1-4-.5-5.5 1z"/></svg>
-            <b>Moderne, helle Praxisräume</b>
+      <div class="hero-visual reveal" data-delay="2">
+        <div class="hero-card3d" id="heroTilt">
+          <div class="media">
+            <div class="media-fallback" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5c-1.5-1.5-4-2-5.5-1C4 5.5 4 8 4.5 11c.4 2.4 1 5.5 2 7 .8 1.2 2 .5 2.3-1 .3-1.3.5-3 1.2-3s.9 1.7 1.2 3c.3 1.5 1.5 2.2 2.3 1 1-1.5 1.6-4.6 2-7 .5-3 .5-5.5-2-6.5-1.5-1-4-.5-5.5 1z"/></svg>
+              <b>Moderne, helle Praxisräume</b>
+            </div>
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1100&q=80" alt="Heller, moderner Behandlungsraum der Zahnarztpraxis" loading="eager" onerror="this.remove()" />
           </div>
-          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1100&q=80" alt="Heller, moderner Behandlungsraum der Zahnarztpraxis" loading="eager" onerror="this.remove()" />
-        </div>
-        <div class="float-card one">
-          <span class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-          <div><b>Trierer Str. 282</b><small>52156 Monschau-Imgenbroich</small></div>
-        </div>
-        <div class="float-card two">
-          <span class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
-          <div><b>Termine</b><small>nach Vereinbarung</small></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Trust strip -->
-    <div class="wrap">
-      <div class="trust reveal">
-        <div class="trust-inner">
-          <div class="trust-item">
-            <span class="ti" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5l-8-3z"/></svg></span>
-            <div><b>Sorgfältig & modern</b><span>Zeitgemäße Zahnheilkunde</span></div>
+          <div class="float-card one">
+            <span class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <div><b>Trierer Str. 282</b><small>52156 Monschau-Imgenbroich</small></div>
           </div>
-          <div class="trust-item">
-            <span class="ti" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></span>
-            <div><b>Einfühlsam</b><span>Persönliche Betreuung</span></div>
-          </div>
-          <div class="trust-item">
-            <span class="ti" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-            <div><b>Zeit für Sie</b><span>Ruhige Atmosphäre</span></div>
-          </div>
-          <div class="trust-item">
-            <span class="ti" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-            <div><b>Für die Familie</b><span>Von Klein bis Groß</span></div>
+          <div class="float-card two">
+            <span class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <div><b>Termine</b><small>nach Vereinbarung</small></div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ===== Marquee ===== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Vorsorge</span><span>Zahnreinigung</span><span>Zahnerhaltung</span><span>Zahnersatz</span><span>Ästhetik</span><span>Kinderbehandlung</span>
+      <span>Vorsorge</span><span>Zahnreinigung</span><span>Zahnerhaltung</span><span>Zahnersatz</span><span>Ästhetik</span><span>Kinderbehandlung</span>
+    </div>
+  </div>
 
   <!-- ===== Leistungen ===== -->
   <section class="block" id="leistungen" aria-labelledby="services-title">
@@ -499,50 +458,98 @@
       <div class="section-head reveal">
         <span class="eyebrow center"><span class="idx">01</span> &nbsp;Unsere Leistungen</span>
         <h2 id="services-title">Zahnmedizin für die ganze Familie</h2>
-        <p>Von der Vorsorge bis zur Behandlung begleiten wir Sie rund um Ihre Zahngesundheit – individuell und auf Augenhöhe. Sprechen Sie uns gerne auf Ihr persönliches Anliegen an.</p>
+        <p>Von der Vorsorge bis zur Behandlung begleiten wir Sie rund um Ihre Zahngesundheit – individuell und auf Augenhöhe.</p>
       </div>
 
-      <div class="cards">
-        <article class="card reveal">
-          <span class="num-tag">01</span>
-          <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
-          <h3>Vorsorge & Kontrolle</h3>
-          <p>Regelmäßige Untersuchungen helfen, Ihre Zähne langfristig gesund zu halten und mögliche Probleme frühzeitig zu erkennen.</p>
+      <div class="bento">
+        <article class="svc s1 tilt reveal">
+          <div class="svc-media">
+            <div class="svc-fallback" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1000&q=80" alt="Zahnärztin bei einer Vorsorgeuntersuchung" loading="lazy" onerror="this.remove()" />
+          </div>
+          <div class="scrim"></div>
+          <span class="svc-num">01</span>
+          <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span>
+          <div class="svc-body">
+            <h3>Vorsorge &amp; Kontrolle</h3>
+            <p>Regelmäßige Untersuchungen halten Ihre Zähne langfristig gesund und erkennen mögliche Probleme frühzeitig.</p>
+            <span class="more">Mehr erfahren →</span>
+          </div>
         </article>
 
-        <article class="card reveal">
-          <span class="num-tag">02</span>
-          <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div>
-          <h3>Professionelle Zahnreinigung</h3>
-          <p>Eine gründliche Reinigung sorgt für ein frisches, sauberes Gefühl und unterstützt die Gesundheit von Zähnen und Zahnfleisch.</p>
+        <article class="svc s2 tilt reveal" data-delay="1">
+          <div class="svc-media">
+            <div class="svc-fallback" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div>
+            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1000&q=80" alt="Behandlungsinstrumente für die professionelle Zahnreinigung" loading="lazy" onerror="this.remove()" />
+          </div>
+          <div class="scrim"></div>
+          <span class="svc-num">02</span>
+          <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></span>
+          <div class="svc-body">
+            <h3>Professionelle Zahnreinigung</h3>
+            <p>Eine gründliche Reinigung für ein frisches, sauberes Gefühl – und für gesunde Zähne und Zahnfleisch.</p>
+            <span class="more">Mehr erfahren →</span>
+          </div>
         </article>
 
-        <article class="card reveal">
-          <span class="num-tag">03</span>
-          <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 2 1 3 1 6 0 1 1 5 2 5s1-3 2-3 1 3 2 3 1 3 2 3 2-4 2-5c0-3 1-4 1-6a7 7 0 0 0-7-7z"/></svg></div>
-          <h3>Zahnerhaltung & Füllungen</h3>
-          <p>Bei Karies oder beschädigten Zähnen setzen wir auf zahnschonende Behandlungen, um Ihre natürlichen Zähne zu erhalten.</p>
+        <article class="svc s3 tilt reveal">
+          <div class="svc-media">
+            <div class="svc-fallback" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 2 1 3 1 6 0 1 1 5 2 5s1-3 2-3 1 3 2 3 1 3 2 3 2-4 2-5c0-3 1-4 1-6a7 7 0 0 0-7-7z"/></svg></div>
+            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfc?auto=format&fit=crop&w=800&q=80" alt="Zahnbehandlung zur Zahnerhaltung" loading="lazy" onerror="this.remove()" />
+          </div>
+          <div class="scrim"></div>
+          <span class="svc-num">03</span>
+          <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 2 1 3 1 6 0 1 1 5 2 5s1-3 2-3 1 3 2 3 1 3 2 3 2-4 2-5c0-3 1-4 1-6a7 7 0 0 0-7-7z"/></svg></span>
+          <div class="svc-body">
+            <h3>Zahnerhaltung &amp; Füllungen</h3>
+            <p>Zahnschonende Behandlungen, um Ihre natürlichen Zähne zu erhalten.</p>
+            <span class="more">Mehr erfahren →</span>
+          </div>
         </article>
 
-        <article class="card reveal">
-          <span class="num-tag">04</span>
-          <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-          <h3>Zahnersatz</h3>
-          <p>Kronen, Brücken oder Prothesen – wir beraten Sie in Ruhe zu Möglichkeiten, die zu Ihnen und Ihrem Alltag passen.</p>
+        <article class="svc s4 tilt reveal" data-delay="1">
+          <div class="svc-media">
+            <div class="svc-fallback" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+            <img src="https://images.unsplash.com/photo-1612531386530-97286d97c2d2?auto=format&fit=crop&w=800&q=80" alt="Modell für hochwertigen Zahnersatz" loading="lazy" onerror="this.remove()" />
+          </div>
+          <div class="scrim"></div>
+          <span class="svc-num">04</span>
+          <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+          <div class="svc-body">
+            <h3>Zahnersatz</h3>
+            <p>Kronen, Brücken oder Prothesen – in Ruhe auf Sie abgestimmt.</p>
+            <span class="more">Mehr erfahren →</span>
+          </div>
         </article>
 
-        <article class="card reveal">
-          <span class="num-tag">05</span>
-          <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M5 8c0 4 3 7 7 7s7-3 7-7"/><path d="M8 22h8"/><path d="M12 15v7"/></svg></div>
-          <h3>Ästhetische Zahnheilkunde</h3>
-          <p>Für ein Lächeln, mit dem Sie sich rundum wohlfühlen – wir informieren Sie gerne über passende Behandlungsmöglichkeiten.</p>
+        <article class="svc s5 tilt reveal" data-delay="2">
+          <div class="svc-media">
+            <div class="svc-fallback" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M5 8c0 4 3 7 7 7s7-3 7-7"/><path d="M8 22h8"/><path d="M12 15v7"/></svg></div>
+            <img src="https://images.unsplash.com/photo-1619451683205-6b6a0b1a5b5a?auto=format&fit=crop&w=800&q=80" alt="Strahlendes Lächeln nach ästhetischer Zahnheilkunde" loading="lazy" onerror="this.remove()" />
+          </div>
+          <div class="scrim"></div>
+          <span class="svc-num">05</span>
+          <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M5 8c0 4 3 7 7 7s7-3 7-7"/><path d="M8 22h8"/><path d="M12 15v7"/></svg></span>
+          <div class="svc-body">
+            <h3>Ästhetische Zahnheilkunde</h3>
+            <p>Für ein Lächeln, mit dem Sie sich rundum wohlfühlen.</p>
+            <span class="more">Mehr erfahren →</span>
+          </div>
         </article>
 
-        <article class="card reveal">
-          <span class="num-tag">06</span>
-          <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
-          <h3>Behandlung für Kinder</h3>
-          <p>Mit Geduld und viel Einfühlungsvermögen sorgen wir dafür, dass sich schon die Kleinsten bei uns gut aufgehoben fühlen.</p>
+        <article class="svc s6 tilt reveal">
+          <div class="svc-media">
+            <div class="svc-fallback alt" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
+            <img src="https://images.unsplash.com/photo-1595003500447-88d0cd4e2a5f?auto=format&fit=crop&w=1400&q=80" alt="Kind lächelt entspannt beim Zahnarztbesuch" loading="lazy" onerror="this.remove()" />
+          </div>
+          <div class="scrim"></div>
+          <span class="svc-num">06</span>
+          <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></span>
+          <div class="svc-body">
+            <h3>Behandlung für Kinder</h3>
+            <p>Mit Geduld und viel Einfühlungsvermögen sorgen wir dafür, dass sich schon die Kleinsten bei uns rundum gut aufgehoben fühlen.</p>
+            <span class="more">Mehr erfahren →</span>
+          </div>
         </article>
       </div>
     </div>
@@ -552,20 +559,18 @@
   <section class="block about" id="praxis" aria-labelledby="about-title">
     <div class="wrap about-grid">
       <div class="about-media reveal">
-        <div class="media">
-          <div class="media-fallback alt" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-            <b>Willkommen in unserer Praxis</b>
+        <div class="pfrm">
+          <div class="media" id="aboutTilt">
+            <div class="media-fallback alt" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+              <b>Willkommen in unserer Praxis</b>
+            </div>
+            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1000&q=80" alt="Lächelnde Patientin im Behandlungsstuhl einer hellen Zahnarztpraxis" loading="lazy" onerror="this.remove()" />
           </div>
-          <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1000&q=80" alt="Lächelnde Patientin im Behandlungsstuhl einer hellen Zahnarztpraxis" loading="lazy" onerror="this.remove()" />
-        </div>
-        <div class="badge">
-          <div class="bn">♥</div>
-          <div class="bl">Mit Herz & Sorgfalt</div>
+          <div class="badge"><div class="bn">♥</div><div class="bl">Mit Herz &amp; Sorgfalt</div></div>
         </div>
       </div>
-
-      <div class="about-text reveal">
+      <div class="about-text reveal" data-delay="1">
         <span class="eyebrow"><span class="idx">02</span> &nbsp;Über die Praxis</span>
         <h2 id="about-title">Herzlich willkommen bei Nataja Tarasenko</h2>
         <p>In unserer Praxis in Monschau-Imgenbroich steht der Mensch im Mittelpunkt. Wir möchten, dass Sie sich von Anfang an gut aufgehoben fühlen – deshalb nehmen wir uns Zeit, hören zu und erklären Ihnen jeden Schritt in Ruhe.</p>
@@ -588,55 +593,38 @@
         <h2 id="ablauf-title">In drei Schritten zum Termin</h2>
         <p>Unkompliziert und ohne Umwege – so einfach vereinbaren Sie Ihren Besuch in unserer Praxis.</p>
       </div>
-      <div class="steps">
-        <div class="step reveal">
-          <div class="sn">01</div>
-          <h3>Anrufen</h3>
-          <p>Rufen Sie uns an unter <a href="tel:+4924722544" style="color:var(--teal-deep);font-weight:600;">+49 2472 2544</a>. Wir nehmen uns Zeit für Ihr Anliegen.</p>
-        </div>
-        <div class="step reveal">
-          <div class="sn">02</div>
-          <h3>Termin finden</h3>
-          <p>Gemeinsam finden wir einen Termin, der gut in Ihren Alltag passt.</p>
-        </div>
-        <div class="step reveal">
-          <div class="sn">03</div>
-          <h3>Entspannt ankommen</h3>
-          <p>Sie besuchen uns in der Trierer Str. 282 – wir kümmern uns in Ruhe um Sie.</p>
-        </div>
+      <div class="timeline">
+        <div class="tstep reveal"><div class="sn">01</div><h3>Anrufen</h3><p>Rufen Sie uns an unter <a href="tel:+4924722544" style="color:var(--teal-deep);font-weight:600;">+49 2472 2544</a>. Wir nehmen uns Zeit für Ihr Anliegen.</p></div>
+        <div class="tstep reveal" data-delay="1"><div class="sn">02</div><h3>Termin finden</h3><p>Gemeinsam finden wir einen Termin, der gut in Ihren Alltag passt.</p></div>
+        <div class="tstep reveal" data-delay="2"><div class="sn">03</div><h3>Entspannt ankommen</h3><p>Sie besuchen uns in der Trierer Str. 282 – wir kümmern uns in Ruhe um Sie.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Kontakt & Anfahrt ===== -->
+  <!-- ===== Kontakt ===== -->
   <section class="block contact" id="kontakt" aria-labelledby="contact-title">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow center"><span class="idx">04</span> &nbsp;Kontakt & Anfahrt</span>
+        <span class="eyebrow center"><span class="idx">04</span> &nbsp;Kontakt &amp; Anfahrt</span>
         <h2 id="contact-title">So erreichen Sie uns</h2>
         <p>Vereinbaren Sie telefonisch Ihren Termin – wir freuen uns auf Sie und beantworten gerne Ihre Fragen.</p>
       </div>
-
       <div class="contact-grid">
         <div class="info-card reveal">
           <h3>Zahnarztpraxis Nataja Tarasenko</h3>
           <p class="sub">Wir freuen uns auf Ihren Anruf.</p>
-
           <div class="info-row">
             <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
             <div class="meta"><b>Adresse</b><span>Trierer Str. 282<br>52156 Monschau-Imgenbroich</span></div>
           </div>
-
           <div class="info-row">
             <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
             <div class="meta"><b>Telefon</b><a class="phone" href="tel:+4924722544">+49 2472 2544</a></div>
           </div>
-
           <div class="info-row">
             <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
             <div class="meta"><b>Öffnungszeiten</b><span>[Öffnungszeiten folgen]</span><br><span class="hours-note">Termine nach telefonischer Vereinbarung</span></div>
           </div>
-
           <div class="contact-cta">
             <a class="btn btn-primary btn-lg" href="tel:+4924722544">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -644,21 +632,19 @@
             </a>
           </div>
         </div>
-
-        <div class="map-card reveal">
+        <div class="map-card reveal" data-delay="1">
           <iframe
             title="Standort der Zahnarztpraxis Nataja Tarasenko auf Google Maps"
             src="https://www.google.com/maps?q=Trierer+Str.+282,+52156+Monschau-Imgenbroich,+Deutschland&output=embed"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            allowfullscreen></iframe>
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== CTA Band ===== -->
+  <!-- ===== CTA band ===== -->
   <section class="cta-band" aria-labelledby="cta-title">
+    <div class="aurora" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
     <div class="wrap cta-inner reveal">
       <span class="eyebrow center light">Wir freuen uns auf Sie</span>
       <h2 id="cta-title">Bereit für einen entspannten Zahnarztbesuch?</h2>
@@ -681,11 +667,10 @@
           <span class="brand-mark" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5c-1.5-1.5-4-2-5.5-1C4 5.5 4 8 4.5 11c.4 2.4 1 5.5 2 7 .8 1.2 2 .5 2.3-1 .3-1.3.5-3 1.2-3s.9 1.7 1.2 3c.3 1.5 1.5 2.2 2.3 1 1-1.5 1.6-4.6 2-7 .5-3 .5-5.5-2-6.5-1.5-1-4-.5-5.5 1z"/></svg>
           </span>
-          <div><strong>Nataja Tarasenko</strong><span>Zahnärztin · Monschau</span></div>
+          <div><strong>Nataja Tarasenko</strong><br><span>Zahnärztin · Monschau</span></div>
         </div>
         <p>Moderne, einfühlsame Zahnmedizin für die ganze Familie in Monschau-Imgenbroich. Wir nehmen uns Zeit für Sie.</p>
       </div>
-
       <div class="footer-col">
         <h4>Kontakt</h4>
         <ul>
@@ -695,14 +680,13 @@
           <li>Termine nach Vereinbarung</li>
         </ul>
       </div>
-
       <div class="footer-col">
         <h4>Navigation</h4>
         <ul>
           <li><a href="#leistungen">Leistungen</a></li>
           <li><a href="#praxis">Über die Praxis</a></li>
           <li><a href="#ablauf">Ablauf</a></li>
-          <li><a href="#kontakt">Kontakt & Anfahrt</a></li>
+          <li><a href="#kontakt">Kontakt &amp; Anfahrt</a></li>
         </ul>
       </div>
     </div>
@@ -712,7 +696,6 @@
     </div>
   </footer>
 
-  <!-- ===== Sticky mobile call ===== -->
   <div class="sticky-call">
     <a class="btn btn-primary" href="tel:+4924722544">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -721,28 +704,105 @@
   </div>
 
   <script>
-    // Header background on scroll
-    var header = document.getElementById('siteHeader');
-    function onScroll() {
-      if (window.scrollY > 24) header.classList.add('scrolled');
-      else header.classList.remove('scrolled');
-    }
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-    // Reveal on scroll
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var items = document.querySelectorAll('.reveal');
-    if (reduce || !('IntersectionObserver' in window)) {
-      items.forEach(function (el) { el.classList.add('in'); });
-    } else {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      // Header scroll + progress bar
+      var header = document.getElementById('siteHeader');
+      var progress = document.getElementById('progress');
+      function onScroll() {
+        var y = window.scrollY || window.pageYOffset;
+        header.classList.toggle('scrolled', y > 24);
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+      }
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // Reveal on scroll
+      var items = document.querySelectorAll('.reveal, .tstep');
+      if (reduce || !('IntersectionObserver' in window)) {
+        items.forEach(function (el) { el.classList.add('in'); });
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
+        items.forEach(function (el) { io.observe(el); });
+      }
+
+      // Count-up
+      function countUp(el) {
+        var target = parseFloat(el.getAttribute('data-count'));
+        var suffix = el.getAttribute('data-suffix') || '';
+        var start = null, dur = 1400;
+        function step(ts) {
+          if (!start) start = ts;
+          var p = Math.min((ts - start) / dur, 1);
+          var val = Math.round((1 - Math.pow(1 - p, 3)) * target);
+          el.innerHTML = val + '<span class="g">' + suffix + '</span>';
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      var counters = document.querySelectorAll('[data-count]');
+      if (reduce || !('IntersectionObserver' in window)) {
+        counters.forEach(function (el) { el.innerHTML = el.getAttribute('data-count') + '<span class="g">' + (el.getAttribute('data-suffix') || '') + '</span>'; });
+      } else {
+        var cio = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) { if (e.isIntersecting) { countUp(e.target); cio.unobserve(e.target); } });
+        }, { threshold: 0.6 });
+        counters.forEach(function (el) { cio.observe(el); });
+      }
+
+      if (finePointer && !reduce) {
+        // Cursor glow
+        var glow = document.getElementById('glow');
+        var gx = window.innerWidth / 2, gy = window.innerHeight / 2, cx = gx, cy = gy, shown = false;
+        window.addEventListener('mousemove', function (e) {
+          gx = e.clientX; gy = e.clientY;
+          if (!shown) { glow.style.opacity = '1'; shown = true; }
         });
-      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-      items.forEach(function (el) { io.observe(el); });
-    }
+        (function raf() {
+          cx += (gx - cx) * 0.12; cy += (gy - cy) * 0.12;
+          glow.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0) translate(-50%,-50%)';
+          requestAnimationFrame(raf);
+        })();
+
+        // 3D tilt
+        function addTilt(el, max, scale) {
+          var rect, raf2 = null, tx = 0, ty = 0, cxr = 0, cyr = 0;
+          function enter() { rect = el.getBoundingClientRect(); }
+          function move(e) {
+            if (!rect) rect = el.getBoundingClientRect();
+            var px = (e.clientX - rect.left) / rect.width - 0.5;
+            var py = (e.clientY - rect.top) / rect.height - 0.5;
+            tx = py * -max; ty = px * max;
+            if (!raf2) raf2 = requestAnimationFrame(apply);
+          }
+          function apply() {
+            cxr += (tx - cxr) * 0.18; cyr += (ty - cyr) * 0.18;
+            el.style.transform = 'perspective(900px) rotateX(' + cxr.toFixed(2) + 'deg) rotateY(' + cyr.toFixed(2) + 'deg)' + (scale ? ' scale(' + scale + ')' : '');
+            if (Math.abs(tx - cxr) > 0.05 || Math.abs(ty - cyr) > 0.05) { raf2 = requestAnimationFrame(apply); } else { raf2 = null; }
+          }
+          function leave() { tx = 0; ty = 0; if (!raf2) raf2 = requestAnimationFrame(apply); }
+          el.addEventListener('mouseenter', enter);
+          el.addEventListener('mousemove', move);
+          el.addEventListener('mouseleave', leave);
+        }
+        document.querySelectorAll('.tilt').forEach(function (el) { addTilt(el, 7, 1.02); });
+        var ht = document.getElementById('heroTilt'); if (ht) addTilt(ht, 6);
+
+        // Hero parallax on scroll
+        var hv = document.querySelector('.hero-visual');
+        window.addEventListener('scroll', function () {
+          var y = window.scrollY || 0;
+          if (y < 900 && hv) hv.style.transform = 'translateY(' + (y * 0.06) + 'px)';
+        }, { passive: true });
+      }
+    })();
   </script>
 
 </body>
