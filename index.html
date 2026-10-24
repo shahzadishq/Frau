@@ -371,6 +371,48 @@
     @media (max-width: 420px) {
       .float-card.one { left: 8px; bottom: 16px; }
     }
+
+    /* ---------- Leistungen · interaktive Panels (Idee 3) ---------- */
+    .panels { display: flex; gap: 16px; height: 520px; }
+    .svc-panel { position: relative; flex: 1; border-radius: 24px; overflow: hidden; cursor: pointer; background: var(--teal-deep); box-shadow: var(--shadow-md); outline: none; transition: flex .55s var(--ease), box-shadow .4s var(--ease); }
+    .svc-panel.open { flex: 3.4; box-shadow: var(--shadow-xl); }
+    .svc-panel:focus-visible { box-shadow: 0 0 0 3px var(--gold-bright), var(--shadow-xl); }
+    .svc-panel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; transition: transform 1.2s var(--ease); }
+    .svc-panel.open img { transform: scale(1.05); }
+    .svc-panel .ptint { position: absolute; inset: 0; z-index: 2; background: linear-gradient(180deg, rgba(7,43,39,.15), rgba(7,43,39,.82)); transition: background .5s var(--ease); }
+    .svc-panel.open .ptint { background: linear-gradient(115deg, rgba(7,43,39,.74) 0%, rgba(7,43,39,.3) 55%, rgba(7,43,39,.78) 100%); }
+    .collapsed-label { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 26px 0; color: #fff; transition: opacity .4s var(--ease); }
+    .collapsed-label .cn { font-family: "Fraunces", serif; font-style: italic; color: var(--gold-bright); font-size: 1.1rem; }
+    .collapsed-label .ct { writing-mode: vertical-rl; transform: rotate(180deg); font-family: "Fraunces", serif; font-size: 1.2rem; white-space: nowrap; }
+    .svc-panel.open .collapsed-label { opacity: 0; pointer-events: none; }
+    .open-body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 4; padding: 34px 36px; color: #fff; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .5s var(--ease) .12s, transform .5s var(--ease) .12s; }
+    .svc-panel.open .open-body { opacity: 1; transform: none; pointer-events: auto; }
+    .open-body .on { font-family: "Fraunces", serif; font-style: italic; color: var(--gold-bright); font-size: 1.2rem; margin-bottom: 8px; }
+    .open-body h3 { font-size: 2rem; margin-bottom: 10px; color: #fff; }
+    .open-body p { color: rgba(255,255,255,.88); max-width: 44ch; margin-bottom: 16px; }
+    .open-body .more { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: .9rem; color: var(--gold-bright); }
+    .panels-hint { text-align: center; color: var(--muted); font-size: .86rem; margin-top: 24px; }
+    @media (max-width: 899px) {
+      .panels { flex-direction: column; height: auto; gap: 14px; }
+      .svc-panel { flex: none; min-height: 190px; border-radius: 20px; }
+      .svc-panel .collapsed-label { display: none; }
+      .svc-panel .ptint { background: linear-gradient(180deg, rgba(7,43,39,.2), rgba(7,43,39,.8)); }
+      .svc-panel .open-body { opacity: 1; transform: none; pointer-events: auto; padding: 24px 26px; }
+      .panels-hint { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .svc-panel, .svc-panel img, .svc-panel .ptint, .open-body, .collapsed-label { transition: none !important; }
+    }
+
+    /* ---------- Praxis-Clip (Einblick) ---------- */
+    .praxis-clip { position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid var(--line); margin-bottom: 52px; aspect-ratio: 16 / 9; max-height: 470px; background: var(--teal-deep); }
+    .praxis-clip video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .praxis-clip .clip-overlay { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(7,43,39,.18), transparent 26%, transparent 68%, rgba(7,43,39,.42)); }
+    .clip-badge { position: absolute; top: 18px; left: 18px; display: inline-flex; align-items: center; gap: 9px; background: rgba(7,43,39,.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #fff; font-size: .78rem; font-weight: 500; letter-spacing: .06em; padding: 9px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.22); }
+    .clip-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold-bright); animation: pulse 2s infinite; }
+    .clip-caption { position: absolute; left: 24px; bottom: 20px; color: #fff; font-family: "Fraunces", serif; font-size: 1.35rem; text-shadow: 0 2px 16px rgba(0,0,0,.55); }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(228,197,133,.6); } 70% { box-shadow: 0 0 0 10px rgba(228,197,133,0); } 100% { box-shadow: 0 0 0 0 rgba(228,197,133,0); } }
+    @media (prefers-reduced-motion: reduce) { .clip-badge .dot { animation: none; } }
   </style>
 </head>
 <body>
@@ -468,97 +510,45 @@
         <p>Von der Vorsorge bis zur Behandlung begleiten wir Sie rund um Ihre Zahngesundheit – individuell und auf Augenhöhe.</p>
       </div>
 
-      <div class="bento">
-        <article class="svc s1 tilt reveal">
-          <div class="svc-media">
-            <div class="svc-fallback" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
-            <img src="assets/img/service-vorsorge.jpg" alt="Zahnärztin untersucht die Zähne einer Patientin bei der Vorsorge" loading="lazy" onerror="this.remove()" />
-          </div>
-          <div class="scrim"></div>
-          <span class="svc-num">01</span>
-          <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span>
-          <div class="svc-body">
-            <h3>Vorsorge &amp; Kontrolle</h3>
-            <p>Regelmäßige Untersuchungen halten Ihre Zähne langfristig gesund und erkennen mögliche Probleme frühzeitig.</p>
-            <span class="more">Mehr erfahren →</span>
-          </div>
+      <div class="panels reveal">
+        <article class="svc-panel open" tabindex="0" role="button" aria-expanded="true" aria-label="Vorsorge und Kontrolle">
+          <img src="assets/img/service-vorsorge.jpg" alt="Zahnärztin untersucht die Zähne einer Patientin bei der Vorsorge" loading="lazy" />
+          <div class="ptint"></div>
+          <div class="collapsed-label"><span class="cn">01</span><span class="ct">Vorsorge</span></div>
+          <div class="open-body"><div class="on">01</div><h3>Vorsorge &amp; Kontrolle</h3><p>Regelmäßige Untersuchungen halten Ihre Zähne langfristig gesund und erkennen mögliche Probleme frühzeitig.</p><span class="more">Mehr erfahren →</span></div>
         </article>
-
-        <article class="svc s2 tilt reveal" data-delay="1">
-          <div class="svc-media">
-            <div class="svc-fallback" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div>
-            <img src="assets/img/service-zahnreinigung.jpg" alt="Patientin mit Zahnbürste – rund um die professionelle Zahnreinigung" loading="lazy" onerror="this.remove()" />
-          </div>
-          <div class="scrim"></div>
-          <span class="svc-num">02</span>
-          <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></span>
-          <div class="svc-body">
-            <h3>Professionelle Zahnreinigung</h3>
-            <p>Eine gründliche Reinigung für ein frisches, sauberes Gefühl – und für gesunde Zähne und Zahnfleisch.</p>
-            <span class="more">Mehr erfahren →</span>
-          </div>
+        <article class="svc-panel" tabindex="0" role="button" aria-expanded="false" aria-label="Professionelle Zahnreinigung">
+          <img src="assets/img/service-zahnreinigung.jpg" alt="Patientin mit Zahnbürste – rund um die professionelle Zahnreinigung" loading="lazy" />
+          <div class="ptint"></div>
+          <div class="collapsed-label"><span class="cn">02</span><span class="ct">Zahnreinigung</span></div>
+          <div class="open-body"><div class="on">02</div><h3>Professionelle Zahnreinigung</h3><p>Eine gründliche Reinigung für ein frisches, sauberes Gefühl – und für gesunde Zähne und gesundes Zahnfleisch.</p><span class="more">Mehr erfahren →</span></div>
         </article>
-
-        <article class="svc s3 tilt reveal">
-          <div class="svc-media">
-            <div class="svc-fallback" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 2 1 3 1 6 0 1 1 5 2 5s1-3 2-3 1 3 2 3 1 3 2 3 2-4 2-5c0-3 1-4 1-6a7 7 0 0 0-7-7z"/></svg></div>
-            <img src="assets/img/service-zahnerhaltung.jpg" alt="Zahnarzt bei der Behandlung zur Zahnerhaltung" loading="lazy" onerror="this.remove()" />
-          </div>
-          <div class="scrim"></div>
-          <span class="svc-num">03</span>
-          <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 2 1 3 1 6 0 1 1 5 2 5s1-3 2-3 1 3 2 3 1 3 2 3 2-4 2-5c0-3 1-4 1-6a7 7 0 0 0-7-7z"/></svg></span>
-          <div class="svc-body">
-            <h3>Zahnerhaltung &amp; Füllungen</h3>
-            <p>Zahnschonende Behandlungen, um Ihre natürlichen Zähne zu erhalten.</p>
-            <span class="more">Mehr erfahren →</span>
-          </div>
+        <article class="svc-panel" tabindex="0" role="button" aria-expanded="false" aria-label="Zahnerhaltung und Füllungen">
+          <img src="assets/img/service-zahnerhaltung.jpg" alt="Zahnarzt bei der Behandlung zur Zahnerhaltung" loading="lazy" />
+          <div class="ptint"></div>
+          <div class="collapsed-label"><span class="cn">03</span><span class="ct">Zahnerhaltung</span></div>
+          <div class="open-body"><div class="on">03</div><h3>Zahnerhaltung &amp; Füllungen</h3><p>Zahnschonende Behandlungen, um Ihre natürlichen Zähne möglichst lange zu erhalten.</p><span class="more">Mehr erfahren →</span></div>
         </article>
-
-        <article class="svc s4 tilt reveal" data-delay="1">
-          <div class="svc-media">
-            <div class="svc-fallback" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-            <img src="assets/img/service-zahnersatz.jpg" alt="Zahnärztin erklärt Zahnersatz anhand eines Zahnmodells" loading="lazy" onerror="this.remove()" />
-          </div>
-          <div class="scrim"></div>
-          <span class="svc-num">04</span>
-          <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
-          <div class="svc-body">
-            <h3>Zahnersatz</h3>
-            <p>Kronen, Brücken oder Prothesen – in Ruhe auf Sie abgestimmt.</p>
-            <span class="more">Mehr erfahren →</span>
-          </div>
+        <article class="svc-panel" tabindex="0" role="button" aria-expanded="false" aria-label="Zahnersatz">
+          <img src="assets/img/service-zahnersatz.jpg" alt="Zahnärztin erklärt Zahnersatz anhand eines Zahnmodells" loading="lazy" />
+          <div class="ptint"></div>
+          <div class="collapsed-label"><span class="cn">04</span><span class="ct">Zahnersatz</span></div>
+          <div class="open-body"><div class="on">04</div><h3>Zahnersatz</h3><p>Kronen, Brücken oder Prothesen – in Ruhe und individuell auf Sie und Ihren Alltag abgestimmt.</p><span class="more">Mehr erfahren →</span></div>
         </article>
-
-        <article class="svc s5 tilt reveal" data-delay="2">
-          <div class="svc-media">
-            <div class="svc-fallback" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M5 8c0 4 3 7 7 7s7-3 7-7"/><path d="M8 22h8"/><path d="M12 15v7"/></svg></div>
-            <img src="assets/img/service-aesthetik.jpg" alt="Strahlendes, gesundes Lächeln nach ästhetischer Zahnheilkunde" loading="lazy" onerror="this.remove()" />
-          </div>
-          <div class="scrim"></div>
-          <span class="svc-num">05</span>
-          <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M5 8c0 4 3 7 7 7s7-3 7-7"/><path d="M8 22h8"/><path d="M12 15v7"/></svg></span>
-          <div class="svc-body">
-            <h3>Ästhetische Zahnheilkunde</h3>
-            <p>Für ein Lächeln, mit dem Sie sich rundum wohlfühlen.</p>
-            <span class="more">Mehr erfahren →</span>
-          </div>
+        <article class="svc-panel" tabindex="0" role="button" aria-expanded="false" aria-label="Ästhetische Zahnheilkunde">
+          <img src="assets/img/service-aesthetik.jpg" alt="Strahlendes, gesundes Lächeln nach ästhetischer Zahnheilkunde" loading="lazy" />
+          <div class="ptint"></div>
+          <div class="collapsed-label"><span class="cn">05</span><span class="ct">Ästhetik</span></div>
+          <div class="open-body"><div class="on">05</div><h3>Ästhetische Zahnheilkunde</h3><p>Für ein Lächeln, mit dem Sie sich rundum wohlfühlen – wir beraten Sie gerne zu den Möglichkeiten.</p><span class="more">Mehr erfahren →</span></div>
         </article>
-
-        <article class="svc s6 tilt reveal">
-          <div class="svc-media">
-            <div class="svc-fallback alt" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
-            <img src="assets/img/service-kinder.jpg" alt="Familie mit Kind bei der Zahnärztin – Behandlung für Kinder" loading="lazy" onerror="this.remove()" />
-          </div>
-          <div class="scrim"></div>
-          <span class="svc-num">06</span>
-          <span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></span>
-          <div class="svc-body">
-            <h3>Behandlung für Kinder</h3>
-            <p>Mit Geduld und viel Einfühlungsvermögen sorgen wir dafür, dass sich schon die Kleinsten bei uns rundum gut aufgehoben fühlen.</p>
-            <span class="more">Mehr erfahren →</span>
-          </div>
+        <article class="svc-panel" tabindex="0" role="button" aria-expanded="false" aria-label="Behandlung für Kinder">
+          <img src="assets/img/service-kinder.jpg" alt="Familie mit Kind bei der Zahnärztin – Behandlung für Kinder" loading="lazy" />
+          <div class="ptint"></div>
+          <div class="collapsed-label"><span class="cn">06</span><span class="ct">Kinder</span></div>
+          <div class="open-body"><div class="on">06</div><h3>Behandlung für Kinder</h3><p>Mit Geduld und viel Einfühlungsvermögen sorgen wir dafür, dass sich schon die Kleinsten bei uns wohlfühlen.</p><span class="more">Mehr erfahren →</span></div>
         </article>
       </div>
+      <p class="panels-hint">Fahren Sie über eine Leistung – das Panel öffnet sich und zeigt mehr. Auf dem Smartphone tippen.</p>
     </div>
   </section>
 
@@ -599,6 +589,14 @@
         <span class="eyebrow center"><span class="idx">03</span> &nbsp;Ihr Weg zu uns</span>
         <h2 id="ablauf-title">In drei Schritten zum Termin</h2>
         <p>Unkompliziert und ohne Umwege – so einfach vereinbaren Sie Ihren Besuch in unserer Praxis.</p>
+      </div>
+      <div class="praxis-clip reveal">
+        <video autoplay muted loop playsinline preload="metadata" poster="assets/video/praxis-poster.jpg" aria-label="Einblick in die Zahnarztpraxis Nataja Tarasenko">
+          <source src="assets/video/praxis.mp4" type="video/mp4" />
+        </video>
+        <div class="clip-overlay"></div>
+        <span class="clip-badge"><span class="dot" aria-hidden="true"></span> Einblick in unsere Praxis</span>
+        <span class="clip-caption">So arbeiten wir – mit Ruhe und Sorgfalt.</span>
       </div>
       <div class="timeline">
         <div class="tstep reveal"><div class="sn">01</div><h3>Anrufen</h3><p>Rufen Sie uns an unter <a href="tel:+4924722544" style="color:var(--teal-deep);font-weight:600;">+49 2472 2544</a>. Wir nehmen uns Zeit für Ihr Anliegen.</p></div>
@@ -764,6 +762,22 @@
         }, { threshold: 0.6 });
         counters.forEach(function (el) { cio.observe(el); });
       }
+
+      // Leistungen · interactive panels (open on hover / tap / focus)
+      var svcPanels = document.querySelectorAll('.svc-panel');
+      function openPanel(p) {
+        svcPanels.forEach(function (x) {
+          var on = x === p;
+          x.classList.toggle('open', on);
+          x.setAttribute('aria-expanded', on ? 'true' : 'false');
+        });
+      }
+      svcPanels.forEach(function (p) {
+        p.addEventListener('mouseenter', function () { if (finePointer) openPanel(p); });
+        p.addEventListener('click', function () { openPanel(p); });
+        p.addEventListener('focus', function () { openPanel(p); });
+        p.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPanel(p); } });
+      });
 
       if (finePointer && !reduce) {
         // Cursor glow
