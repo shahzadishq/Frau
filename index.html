@@ -223,15 +223,16 @@
     .bento { display: grid; grid-template-columns: 1fr; gap: 20px; }
     .svc {
       position: relative; border-radius: var(--radius); overflow: hidden; min-height: 300px;
-      background: var(--teal-deep); box-shadow: var(--shadow-md); transform-style: preserve-3d; will-change: transform;
+      background: linear-gradient(150deg, var(--teal) 0%, var(--teal-ink) 100%); box-shadow: var(--shadow-md); transform-style: preserve-3d; will-change: transform;
       transition: box-shadow .4s var(--ease), transform .2s var(--ease);
     }
     .svc:hover { box-shadow: var(--shadow-xl); }
     .svc .svc-media, .svc .svc-media img { position: absolute; inset: 0; width: 100%; height: 100%; }
     .svc .svc-media img { object-fit: cover; z-index: 1; transition: transform 1s var(--ease); }
     .svc:hover .svc-media img { transform: scale(1.08); }
-    .svc .svc-fallback { position: absolute; inset: 0; z-index: 0; display: grid; place-items: center; }
-    .svc .svc-fallback svg { width: 72px; height: 72px; color: rgba(255,255,255,0.35); }
+    .svc .svc-fallback { position: absolute; inset: 0; z-index: 0; display: grid; place-items: center;
+      background: radial-gradient(130% 120% at 72% 0%, rgba(63,154,142,0.55), transparent 58%), linear-gradient(150deg, var(--teal-deep), var(--teal-ink)); }
+    .svc .svc-fallback svg { width: 90px; height: 90px; color: rgba(255,255,255,0.26); }
     .svc .scrim { position: absolute; inset: 0; z-index: 2; background: linear-gradient(180deg, rgba(7,43,39,0.05) 0%, rgba(7,43,39,0.35) 45%, rgba(7,43,39,0.92) 100%); }
     .svc .svc-body { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; color: #fff; transform: translateZ(40px); }
     .svc .svc-num { position: absolute; top: 24px; left: 30px; font-family: "Fraunces", serif; font-style: italic; font-size: 1.1rem; color: var(--gold-bright); z-index: 3; transform: translateZ(40px); }
@@ -290,6 +291,12 @@
 
     /* ---------- CTA band ---------- */
     .cta-band { position: relative; overflow: hidden; background: linear-gradient(135deg, var(--teal-900), var(--teal-ink)); color: #fff; isolation: isolate; }
+    .cta-pattern { position: absolute; inset: 0; z-index: 0; opacity: .9; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='54' height='54' viewBox='0 0 54 54'%3E%3Cg fill='none' stroke='%23cfa862' stroke-opacity='0.16' stroke-width='1.1'%3E%3Cpath d='M13 7v12M7 13h12'/%3E%3Cpath d='M40 34v12M34 40h12'/%3E%3C/g%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='40' cy='10' r='1.6'/%3E%3Ccircle cx='10' cy='37' r='1.6'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 54px 54px;
+      -webkit-mask-image: radial-gradient(130% 100% at 50% 50%, #000 55%, transparent 100%);
+      mask-image: radial-gradient(130% 100% at 50% 50%, #000 55%, transparent 100%);
+    }
     .cta-band .aurora { filter: blur(70px); opacity: .55; }
     .cta-band .aurora .a1 { background: radial-gradient(circle, rgba(18,119,108,0.9), transparent 60%); }
     .cta-band .aurora .a2 { background: radial-gradient(circle, rgba(207,168,98,0.7), transparent 60%); }
@@ -429,7 +436,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5c-1.5-1.5-4-2-5.5-1C4 5.5 4 8 4.5 11c.4 2.4 1 5.5 2 7 .8 1.2 2 .5 2.3-1 .3-1.3.5-3 1.2-3s.9 1.7 1.2 3c.3 1.5 1.5 2.2 2.3 1 1-1.5 1.6-4.6 2-7 .5-3 .5-5.5-2-6.5-1.5-1-4-.5-5.5 1z"/></svg>
               <b>Moderne, helle Praxisräume</b>
             </div>
-            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1100&q=80" alt="Heller, moderner Behandlungsraum der Zahnarztpraxis" loading="eager" onerror="this.remove()" />
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1100&q=80" alt="Heller, moderner Behandlungsraum der Zahnarztpraxis" loading="eager" onerror="this.onerror=function(){this.onerror=null;this.remove()};this.src='https://source.unsplash.com/I_tiqvkfVq8/1100x1300'" />
           </div>
           <div class="float-card one">
             <span class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
@@ -465,7 +472,7 @@
         <article class="svc s1 tilt reveal">
           <div class="svc-media">
             <div class="svc-fallback" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
-            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1000&q=80" alt="Zahnärztin bei einer Vorsorgeuntersuchung" loading="lazy" onerror="this.remove()" />
+            <img src="https://unsplash.com/photos/9F83toLNfkA/download?force=true&w=1100" alt="Zahnärztin untersucht die Zähne einer Patientin bei der Vorsorge" loading="lazy" onerror="this.onerror=function(){this.onerror=null;this.remove()};this.src='https://source.unsplash.com/9F83toLNfkA/1100x900'" />
           </div>
           <div class="scrim"></div>
           <span class="svc-num">01</span>
@@ -480,7 +487,7 @@
         <article class="svc s2 tilt reveal" data-delay="1">
           <div class="svc-media">
             <div class="svc-fallback" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></div>
-            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1000&q=80" alt="Behandlungsinstrumente für die professionelle Zahnreinigung" loading="lazy" onerror="this.remove()" />
+            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1000&q=80" alt="Behandlungsinstrumente für die professionelle Zahnreinigung" loading="lazy" onerror="this.onerror=function(){this.onerror=null;this.remove()};this.src='https://unsplash.com/photos/y73nNSFl2dM/download?force=true&w=1000'" />
           </div>
           <div class="scrim"></div>
           <span class="svc-num">02</span>
@@ -495,7 +502,7 @@
         <article class="svc s3 tilt reveal">
           <div class="svc-media">
             <div class="svc-fallback" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 2 1 3 1 6 0 1 1 5 2 5s1-3 2-3 1 3 2 3 1 3 2 3 2-4 2-5c0-3 1-4 1-6a7 7 0 0 0-7-7z"/></svg></div>
-            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfc?auto=format&fit=crop&w=800&q=80" alt="Zahnbehandlung zur Zahnerhaltung" loading="lazy" onerror="this.remove()" />
+            <img src="https://unsplash.com/photos/rm7Mgu33tHU/download?force=true&w=1000" alt="Zahnärztin bei der Behandlung einer Patientin in der Praxis" loading="lazy" onerror="this.onerror=function(){this.onerror=null;this.remove()};this.src='https://source.unsplash.com/rm7Mgu33tHU/1000x900'" />
           </div>
           <div class="scrim"></div>
           <span class="svc-num">03</span>
@@ -510,7 +517,7 @@
         <article class="svc s4 tilt reveal" data-delay="1">
           <div class="svc-media">
             <div class="svc-fallback" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-            <img src="https://images.unsplash.com/photo-1612531386530-97286d97c2d2?auto=format&fit=crop&w=800&q=80" alt="Modell für hochwertigen Zahnersatz" loading="lazy" onerror="this.remove()" />
+            <img src="https://unsplash.com/photos/W9YEY6G8LVM/download?force=true&w=900" alt="Modell eines Zahnimplantats für hochwertigen Zahnersatz" loading="lazy" onerror="this.onerror=function(){this.onerror=null;this.remove()};this.src='https://source.unsplash.com/W9YEY6G8LVM/900x900'" />
           </div>
           <div class="scrim"></div>
           <span class="svc-num">04</span>
@@ -525,7 +532,7 @@
         <article class="svc s5 tilt reveal" data-delay="2">
           <div class="svc-media">
             <div class="svc-fallback" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M5 8c0 4 3 7 7 7s7-3 7-7"/><path d="M8 22h8"/><path d="M12 15v7"/></svg></div>
-            <img src="https://images.unsplash.com/photo-1619451683205-6b6a0b1a5b5a?auto=format&fit=crop&w=800&q=80" alt="Strahlendes Lächeln nach ästhetischer Zahnheilkunde" loading="lazy" onerror="this.remove()" />
+            <img src="https://unsplash.com/photos/k0UB2vf8Uso/download?force=true&w=900" alt="Ästhetische Zahnbehandlung für ein strahlendes Lächeln" loading="lazy" onerror="this.onerror=function(){this.onerror=null;this.remove()};this.src='https://source.unsplash.com/k0UB2vf8Uso/900x900'" />
           </div>
           <div class="scrim"></div>
           <span class="svc-num">05</span>
@@ -540,7 +547,7 @@
         <article class="svc s6 tilt reveal">
           <div class="svc-media">
             <div class="svc-fallback alt" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
-            <img src="https://images.unsplash.com/photo-1595003500447-88d0cd4e2a5f?auto=format&fit=crop&w=1400&q=80" alt="Kind lächelt entspannt beim Zahnarztbesuch" loading="lazy" onerror="this.remove()" />
+            <img src="https://unsplash.com/photos/AQG6C_xYEpA/download?force=true&w=1400" alt="Helle, freundliche Praxisräume – auch für unsere kleinen Patienten" loading="lazy" onerror="this.onerror=function(){this.onerror=null;this.remove()};this.src='https://source.unsplash.com/AQG6C_xYEpA/1400x700'" />
           </div>
           <div class="scrim"></div>
           <span class="svc-num">06</span>
@@ -565,7 +572,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
               <b>Willkommen in unserer Praxis</b>
             </div>
-            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1000&q=80" alt="Lächelnde Patientin im Behandlungsstuhl einer hellen Zahnarztpraxis" loading="lazy" onerror="this.remove()" />
+            <img src="https://unsplash.com/photos/-xKsxL9XWK8/download?force=true&w=1000" alt="Patientin bei der zahnärztlichen Behandlung in heller Praxis" loading="lazy" onerror="this.onerror=function(){this.onerror=null;this.remove()};this.src='https://source.unsplash.com/-xKsxL9XWK8/1000x1200'" />
           </div>
           <div class="badge"><div class="bn">♥</div><div class="bl">Mit Herz &amp; Sorgfalt</div></div>
         </div>
@@ -644,6 +651,7 @@
 
   <!-- ===== CTA band ===== -->
   <section class="cta-band" aria-labelledby="cta-title">
+    <div class="cta-pattern" aria-hidden="true"></div>
     <div class="aurora" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
     <div class="wrap cta-inner reveal">
       <span class="eyebrow center light">Wir freuen uns auf Sie</span>
