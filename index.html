@@ -413,6 +413,28 @@
     .clip-caption { position: absolute; left: 24px; bottom: 20px; color: #fff; font-family: "Fraunces", serif; font-size: 1.35rem; text-shadow: 0 2px 16px rgba(0,0,0,.55); }
     @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(228,197,133,.6); } 70% { box-shadow: 0 0 0 10px rgba(228,197,133,0); } 100% { box-shadow: 0 0 0 0 rgba(228,197,133,0); } }
     @media (prefers-reduced-motion: reduce) { .clip-badge .dot { animation: none; } }
+
+    /* ---------- Ablauf · two-column (steps left, video right) ---------- */
+    .ablauf-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+    .timeline-v { display: flex; flex-direction: column; justify-content: center; }
+    .vstep { display: flex; gap: 22px; }
+    .vstep .vmarker { position: relative; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; }
+    .vstep .vdot { width: 54px; height: 54px; border-radius: 50%; background: linear-gradient(140deg, var(--teal), var(--teal-deep)); color: #fff; display: grid; place-items: center; font-family: "Fraunces", serif; font-size: 1.4rem; box-shadow: var(--shadow-sm); position: relative; z-index: 1; }
+    .vstep .vdot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(207,168,98,.55); }
+    .vstep .vline { flex: 1; width: 2px; background: linear-gradient(var(--gold), rgba(207,168,98,.12)); margin: 8px 0; }
+    .vstep .vbody { padding: 6px 0 32px; }
+    .vstep:last-child .vbody { padding-bottom: 0; }
+    .vstep .vidx { font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+    .vstep .vbody h3 { font-size: 1.4rem; margin: 5px 0 7px; }
+    .vstep .vbody p { color: var(--muted); font-size: 1rem; }
+    .ablauf-grid .praxis-clip { margin-bottom: 0; }
+    @media (min-width: 900px) {
+      .ablauf-grid { grid-template-columns: 0.92fr 1.08fr; gap: 56px; align-items: stretch; }
+      .ablauf-grid .praxis-clip { aspect-ratio: auto; max-height: none; height: 100%; min-height: 460px; }
+    }
+    @media (max-width: 899px) {
+      .ablauf-grid .praxis-clip { order: -1; }
+    }
   </style>
 </head>
 <body>
@@ -478,7 +500,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5c-1.5-1.5-4-2-5.5-1C4 5.5 4 8 4.5 11c.4 2.4 1 5.5 2 7 .8 1.2 2 .5 2.3-1 .3-1.3.5-3 1.2-3s.9 1.7 1.2 3c.3 1.5 1.5 2.2 2.3 1 1-1.5 1.6-4.6 2-7 .5-3 .5-5.5-2-6.5-1.5-1-4-.5-5.5 1z"/></svg>
               <b>Moderne, helle Praxisräume</b>
             </div>
-            <img src="assets/img/hero.jpg" alt="Lächelnde Patientin in der Zahnarztpraxis Nataja Tarasenko" loading="eager" onerror="this.remove()" />
+            <img src="assets/img/hero.jpg" alt="Behandlung in den hellen, modernen Praxisräumen von Nataja Tarasenko" loading="eager" onerror="this.remove()" />
           </div>
           <div class="float-card one">
             <span class="fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
@@ -590,18 +612,29 @@
         <h2 id="ablauf-title">In drei Schritten zum Termin</h2>
         <p>Unkompliziert und ohne Umwege – so einfach vereinbaren Sie Ihren Besuch in unserer Praxis.</p>
       </div>
-      <div class="praxis-clip reveal">
-        <video autoplay muted loop playsinline preload="metadata" poster="assets/video/praxis-poster.jpg" aria-label="Einblick in die Zahnarztpraxis Nataja Tarasenko">
-          <source src="assets/video/praxis.mp4" type="video/mp4" />
-        </video>
-        <div class="clip-overlay"></div>
-        <span class="clip-badge"><span class="dot" aria-hidden="true"></span> Einblick in unsere Praxis</span>
-        <span class="clip-caption">So arbeiten wir – mit Ruhe und Sorgfalt.</span>
-      </div>
-      <div class="timeline">
-        <div class="tstep reveal"><div class="sn">01</div><h3>Anrufen</h3><p>Rufen Sie uns an unter <a href="tel:+4924722544" style="color:var(--teal-deep);font-weight:600;">+49 2472 2544</a>. Wir nehmen uns Zeit für Ihr Anliegen.</p></div>
-        <div class="tstep reveal" data-delay="1"><div class="sn">02</div><h3>Termin finden</h3><p>Gemeinsam finden wir einen Termin, der gut in Ihren Alltag passt.</p></div>
-        <div class="tstep reveal" data-delay="2"><div class="sn">03</div><h3>Entspannt ankommen</h3><p>Sie besuchen uns in der Trierer Str. 282 – wir kümmern uns in Ruhe um Sie.</p></div>
+      <div class="ablauf-grid">
+        <div class="timeline-v reveal">
+          <div class="vstep">
+            <div class="vmarker"><span class="vdot">1</span><span class="vline"></span></div>
+            <div class="vbody"><span class="vidx">Schritt 01</span><h3>Anrufen</h3><p>Rufen Sie uns an unter <a href="tel:+4924722544" style="color:var(--teal-deep);font-weight:600;">+49 2472 2544</a>. Wir nehmen uns Zeit für Ihr Anliegen.</p></div>
+          </div>
+          <div class="vstep">
+            <div class="vmarker"><span class="vdot">2</span><span class="vline"></span></div>
+            <div class="vbody"><span class="vidx">Schritt 02</span><h3>Termin finden</h3><p>Gemeinsam finden wir einen Termin, der gut in Ihren Alltag passt.</p></div>
+          </div>
+          <div class="vstep">
+            <div class="vmarker"><span class="vdot">3</span></div>
+            <div class="vbody"><span class="vidx">Schritt 03</span><h3>Entspannt ankommen</h3><p>Sie besuchen uns in der Trierer Str. 282 – wir kümmern uns in Ruhe um Sie.</p></div>
+          </div>
+        </div>
+        <div class="praxis-clip reveal" data-delay="1">
+          <video autoplay muted loop playsinline preload="metadata" poster="assets/video/praxis-poster.jpg" aria-label="Einblick in die Zahnarztpraxis Nataja Tarasenko">
+            <source src="assets/video/praxis.mp4" type="video/mp4" />
+          </video>
+          <div class="clip-overlay"></div>
+          <span class="clip-badge"><span class="dot" aria-hidden="true"></span> Einblick in unsere Praxis</span>
+          <span class="clip-caption">So arbeiten wir – mit Ruhe und Sorgfalt.</span>
+        </div>
       </div>
     </div>
   </section>
